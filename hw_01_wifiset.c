@@ -2,6 +2,11 @@
 #include <stdlib.h>
 
 
+int wpa_none()
+{
+	return 0;
+}
+
 int main(){
 
 	int Stype;
@@ -10,6 +15,9 @@ int main(){
 	scanf("%d", &Stype);
 
 	if(Stype == 1)
+		wpa_none();
+	
+	else if ()
 
 
 	exit (0);
