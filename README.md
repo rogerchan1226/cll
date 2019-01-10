@@ -9,6 +9,8 @@ Only for testing
 
 Demo board wifi function setting.
 
-This is first C language homework from my tutor Daniel. "It is the fastest way for you to fimiler our job!" he said. So.... lets do this!!
+This is first C language homework from my tutor Daniel. 
+"It is the fastest way for you to fimiler our job!" he said. 
+So.... let's do this!!
 
-	
+According to WPA Security types. This project ganna divides in four-parts to control/set Wifi Connection of the Demo Board.
