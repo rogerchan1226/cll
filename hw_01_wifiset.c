@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
 
 
 char ssid_set[256] = "/home/rtl/wpa_cli -iwlan0 set_network 0 ssid '\"%s\"'";
@@ -25,40 +27,84 @@ int wpa_none(){
 	
 	return 0;
 }
-
+/* //function wrong
 	int wep_64(){	//WEP 64bit operation function
 
+		if(key_f == 1){
+
+
+		}else{
+
+		}
+		return 0;
 	}
 
+	int wep_128(){	//WEP 128bit operation function
+		return 0;
+	}
+*/
 int wpa_wep(){
 
-	//int key_l;
+	int key_l;
+	int key_f;
+	int i;
 
 	printf("Write down SSID:\n");
 	scanf("%s", SSID);
 	sprintf(system_cmd, ssid_set, SSID);
 
 	char pwd_set[256] = "/home/rtl/wpa_cli -iwlan0 set_network 0 wep_key0 '\"%s\"'";//WEP got four types, when password length equal 5 or 13 should provide '" "' for it
-	char PWD[256] = {0};
 	char system_pwd[256];
+	char PWD[256] = {0};
 
-	/*printf("Select key length:\n 1. 64bit\n 2. 128bit\n");
-	scanf("%d", &key_l);
-		if(key_l == 1){
-			//wep_64();
-			return 0;
-		}else if(key_l == 2){
-			//wep_128();
-			return 0;
-		}else if(key_l >= 3 || key_l <= 0){
-			printf("Error return back to last step\n");
+	do{
+		printf("Select key length:\n 1. 64bit\n 2. 128bit\n");
+		scanf("%d", &key_l);
+	}while(key_l <= 0 || key_l >= 3);/*{
+		printf("Error return to last step!!\n");
+	}*/
+	do{
+		printf("Select key format:\n 1. Hexadecimal\n 2. ASCII\n");
+		scanf("%d", &key_f);
+	}while(key_f <= 0 || key_f >= 3);
 
-			return wpa_wep();
+	if(key_l == 1){
+		//wep_64();
+		if(key_f == 1){
+
+			do{
+				printf("Write down 10 words as Password:\n");
+				scanf("%s", PWD);
+			}while(strlen(PWD) != 10);
+			
+		}else{
+
+			do{
+				printf("Write down 5 words as Password:\n");
+				scanf("%s", PWD);
+			}while(strlen(PWD) != 5);
+			
 		}
-	*/
 
-	printf("Write down Password:\n");
-	scanf("%s", PWD);
+	}else{
+		//wep_128();
+		if(key_f == 1){
+			
+			do{
+				printf("Write down 26 words as Password:\n");
+				scanf("%s", PWD);
+			}while(strlen(PWD) != 26);
+			
+		}else{
+
+			do{
+				printf("Write down 13 words as Password:\n");
+				scanf("%s", PWD);
+			}while(strlen(PWD) != 13);
+			
+		}
+	}
+
 	sprintf(system_pwd, pwd_set, PWD);
 
 	system("/home/rtl/wpa_cli -iwlan0 remove_network 0");
