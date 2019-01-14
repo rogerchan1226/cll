@@ -10,9 +10,23 @@ char system_cmd[256];
 /*char SSID [256] = "/home/rtl/wpa_cli -iwlan0 set_network 0 ssid '\"%s\"'";
   The mistake I made*/
 
+int hex_scan(char *PWD){
+
+	int i;
+	for (i=0; PWD[i]; i++){
+		if(isxdigit(PWD[i])){
+			continue;
+		}else{
+			return 0;
+		}	
+	}
+		return 1;
+}
+
 int wpa_wpa2_aes(){
 
 	int key_f;
+	int v;
 
 	char pwd_set[256] = "/home/rtl/wpa_cli -iwlan0 set_network 0 psk '\"%s\"'";
 	char PWD[256] = {0};
@@ -33,12 +47,12 @@ int wpa_wpa2_aes(){
 				printf("Password ERROR.\nPlease enter exactly 64 words.\nAnd 'a-f', 'A-F', '0-9' only.\n");
 				continue;
 			}else{
-				if(isxdigit(PWD[0])){	//hex verification
-					break;
-				}else{
+				v= hex_scan(PWD);	//64 <=> length()
+				if(v==0){
 					printf("Password ERROR.\nPlease enter exactly 64 words.\nAnd 'a-f', 'A-F', '0-9' only.\n");
 					continue;
 				}
+				break;
 			}				
 		}
 	}else{
@@ -79,6 +93,7 @@ int wpa_wpa2_aes(){
 int wpa_wpa2_tkip(){
 
 	int key_f;
+	int v;
 
 	char pwd_set[256] = "/home/rtl/wpa_cli -iwlan0 set_network 0 psk '\"%s\"'";
 	char PWD[256] = {0};
@@ -99,12 +114,12 @@ int wpa_wpa2_tkip(){
 				printf("Password ERROR.\nPlease enter exactly 64 words.\nAnd 'a-f', 'A-F', '0-9' only.\n");
 				continue;
 			}else{
-				if(isxdigit(PWD[0])){	//hex verification
-					break;
-				}else{
+				v= hex_scan(PWD);	//64 <=> length()
+				if(v==0){
 					printf("Password ERROR.\nPlease enter exactly 64 words.\nAnd 'a-f', 'A-F', '0-9' only.\n");
 					continue;
 				}
+				break;
 			}				
 		}
 	}else{
@@ -180,6 +195,7 @@ int wpa_wep(){
 
 	int key_l;
 	int key_f;
+	int v;
 
 	printf("Write down SSID:\n");
 	scanf("%s", SSID);
@@ -212,12 +228,12 @@ int wpa_wep(){
 					printf("Password ERROR.\nPlease enter exactly 10 words.\nAnd 'a-f', 'A-F', '0-9' only.\n");
 					continue;
 				}else{
-					if(isxdigit(PWD[0])){	//hex verification
-						break;
-					}else{
+					v= hex_scan(PWD);	//64 <=> length()
+					if(v==0){
 						printf("Password ERROR.\nPlease enter exactly 10 words.\nAnd 'a-f', 'A-F', '0-9' only.\n");
 						continue;
 					}
+					break;
 				}				
 			}		
 		}else{
@@ -251,12 +267,12 @@ int wpa_wep(){
 					printf("Password ERROR.\nPlease enter exactly 26 words.\nAnd 'a-f', 'A-F', '0-9' only.\n");
 					continue;
 				}else{
-					if(isxdigit(PWD[0])){	//hex verification
-						break;
-					}else{
+					v= hex_scan(PWD);	//64 <=> length()
+					if(v==0){
 						printf("Password ERROR.\nPlease enter exactly 26 words.\nAnd 'a-f', 'A-F', '0-9' only.\n");
 						continue;
 					}
+					break;
 				}			
 			}	
 		}else{
@@ -318,6 +334,7 @@ int wpa_wpa2(){
 int wpa_mix(){
 
 	int key_f;
+	int v;
 
 	char pwd_set[256] = "/home/rtl/wpa_cli -iwlan0 set_network 0 psk '\"%s\"'";
 	char PWD[256] = {0};
@@ -342,12 +359,12 @@ int wpa_mix(){
 				printf("Password ERROR.\nPlease enter exactly 64 words.\nAnd 'a-f', 'A-F', '0-9' only.\n");
 				continue;
 			}else{
-				if(isxdigit(PWD[0])){	//hex verification
-					break;
-				}else{
+				v= hex_scan(PWD);	//64 <=> length()
+				if(v==0){
 					printf("Password ERROR.\nPlease enter exactly 64 words.\nAnd 'a-f', 'A-F', '0-9' only.\n");
 					continue;
 				}
+				break;
 			}				
 		}
 	}else{
