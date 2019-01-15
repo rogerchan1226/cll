@@ -1,4 +1,4 @@
-cll means "C Language Learning". So this `repo` only build for record C traning.
+__cll means "C Language Learning". So this `repo` only build for record C traning.__
 
 ## Table of Contents
 
@@ -29,7 +29,7 @@ According to WPA Security types. This program gonna divides in four-parts to con
 
 __Show wifi status.__
 
-After done the `hw_01_wifiset`. It can possible set the wifi connect detail. So next, I build `hw_02_getstate.c` to get the wifi connection status let user know.
+After done the [`hw_01_wifiset`](#hw_01_wifiset). It can possible set the wifi connect detail. So next, I build `hw_02_getstate.c` to show the wifi connection status let user know.
 
   * Step 1. Let system build the `.txt` file to record wifi status by commend line.
 ```
