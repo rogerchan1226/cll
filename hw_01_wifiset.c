@@ -14,7 +14,7 @@ int hex_scan(char *PWD){
 
 	int i;
 	for (i=0; PWD[i]; i++){
-		if(isxdigit(PWD[i])){
+		if(isxdigit(PWD[i])){	//hex verification
 			continue;
 		}else{
 			return 0;
@@ -64,7 +64,7 @@ int wpa_wpa2_aes(){
 					printf("Password ERROR.\nPlease enter exactly 8 ~ 63 words.\n");
 					continue;
 				}else{
-					if(isascii(PWD[0])){	//ascii verification
+					if(isascii(PWD[0])){	//ascii verification doesn't need
 						break;
 					}else{
 						printf("Password ERROR.\nPlease enter exactly 8 ~ 63 words.\n");
@@ -131,7 +131,7 @@ int wpa_wpa2_tkip(){
 					printf("Password ERROR.\nPlease enter exactly 8 ~ 63 words.\n");
 					continue;
 				}else{
-					if(isascii(PWD[0])){	//ascii verification
+					if(isascii(PWD[0])){	//ascii verification doesn't need
 						break;
 					}else{
 						printf("Password ERROR.\nPlease enter exactly 8 ~ 63 words.\n");
@@ -245,7 +245,7 @@ int wpa_wep(){
 					printf("Password ERROR.\nPlease enter exactly 5 words.\n");
 					continue;
 				}else{
-					if(isascii(PWD[0])){	//ascii verification
+					if(isascii(PWD[0])){	//ascii verification doesn't need
 						break;
 					}else{
 						printf("Password ERROR.\nPlease enter exactly 5 words.\n");
@@ -285,7 +285,7 @@ int wpa_wep(){
 					printf("Password ERROR.\nPlease enter exactly 13 words.\n");
 					continue;
 				}else{
-					if(isascii(PWD[0])){	//ascii verification
+					if(isascii(PWD[0])){	//ascii verification doesn't need
 						break;
 					}else{
 						printf("Password ERROR.\nPlease enter exactly 13 words.\n");
@@ -376,7 +376,7 @@ int wpa_mix(){
 					printf("Password ERROR.\nPlease enter exactly 8 ~ 63 words.\n");
 					continue;
 				}else{
-					if(isascii(PWD[0])){	//ascii verification
+					if(isascii(PWD[0])){	//ascii verification doesn't need
 						break;
 					}else{
 						printf("Password ERROR.\nPlease enter exactly 8 ~ 63 words.\n");
