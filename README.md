@@ -22,7 +22,7 @@ According to WPA Security types. This program ganna divides in four-parts to con
 
 ### 3. hw_02_getstate.c
 
-* Show wifi status.
+__Show wifi status.__
 
 After done the `hw_01_wifiset`. It can possible set the wifi connect detail. So next, I build `hw_02_getstate.c` to get the wifi connection status let user know.
 
