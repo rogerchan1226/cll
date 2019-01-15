@@ -31,10 +31,23 @@ After done the `hw_01_wifiset`. It can possible set the wifi connect detail. So 
   system("/home/rtl/wpa_cli -iwlan0 status > /tmp/status.txt");
 ```
 
-  * Step 2. Try to get the string from TXT file we builded. I used function `fopen`, `fget` and ` fclose`.
+  * Step 2. Try to get the string from TXT file I builded. I used function `fopen`, `fget` and ` fclose`.
 
-Function `fopen` should write as `fopen(" file locate ", " r(read) or w(write) ");`
+Function `fopen` should write as `fopen(" file locate ", " r(read) or w(write) ");` to open the file.
 ```
-FILE *fpr;    //
-fpr=fopen("/tmp/status.txt", "r");
+  FILE *fpr;    //
+  fpr=fopen("/tmp/status.txt", "r");
 ```
+
+And then let function `fget` get the string. it should write as `fget(buffer, buffer length, from where)`
+```
+  fgets(wifi_status, 256, fpr);
+```
+
+But `fget` only can get string from first line. So I build a while loop to collect all informations.
+```
+  while(fgets(wifi_status, 256, fpr) != NULL){
+  }
+```
+
+End here, I can get whole wifi status informations string. But the output only needs wifi wpa state, which is CONPLETE, SCANNING...etc. So 
