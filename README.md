@@ -36,7 +36,7 @@ After done the [`hw_01_wifiset`](#hw_01_wifiset). It can possible set the wifi c
   system("/home/rtl/wpa_cli -iwlan0 status > /tmp/status.txt");
 ```
 
-  * Step 2. Try to get the string from TXT file I build. I used function `fopen`, `fget` and ` fclose`.
+  * Step 2. Try to get the string from TXT file I build. I used function `fopen`, `fgets` and ` fclose`.
 
 Function `fopen` should write as `fopen(" file locate ", " r(read) or w(write) ");` to open the file.
 ```
@@ -44,15 +44,15 @@ Function `fopen` should write as `fopen(" file locate ", " r(read) or w(write) "
   fpr=fopen("/tmp/status.txt", "r");
 ```
 
-And then let function `fget` get the string. it should write as `fget(buffer, buffer length, from where)`
+And then let function `fgets` get the string. it should write as `fgets(buffer, buffer length, from where);`
 ```
   fgets(wifi_status, 256, fpr);
 ```
 
-But `fget` only can get string from first line. So I build a while loop to collect all information.
+But `fgets` only can get string from first line. So I build a while loop to collect all information.
 ```
   while(fgets(wifi_status, 256, fpr) != NULL){
   }
 ```
 
-End here, I can get whole wifi status information string. But the output only needs wifi wpa state, which is COMPLETE, SCANNING...etc. So 
+End here, It can get whole wifi status information string. But the output only needs wifi wpa state, which is COMPLETE, SCANNING...etc. So 
