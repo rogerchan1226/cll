@@ -7,7 +7,7 @@ Only for testing
 
 ### 2. hw_01_wifiset.c
 
-* Demo board wifi function setting.
+__Demo board wifi function setting.__
 
 This is first C language homework from my tutor Daniel. "It is the fastest way for you to fimiler our job!" he said. 
 So.... let's do this!!
