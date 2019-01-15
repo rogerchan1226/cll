@@ -26,7 +26,7 @@ __Show wifi status.__
 
 After done the `hw_01_wifiset`. It can possible set the wifi connect detail. So next, I build `hw_02_getstate.c` to get the wifi connection status let user know.
 
-  * Step 1. Let system build the `.txt` to record wifi status by commend line.
+  * Step 1. Let system build the `.txt` file to record wifi status by commend line.
 ```
   system("/home/rtl/wpa_cli -iwlan0 status > /tmp/status.txt");
 ```
