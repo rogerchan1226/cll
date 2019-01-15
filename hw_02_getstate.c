@@ -6,27 +6,25 @@
 
 int main(){
 	
-	//char *p;
-	//char *q;
+	char *front;
+	//char *end;
 	FILE *fpr;
-	//int i;
 	char wifi_status[256]={0};
-	//char state_string[256]="wpa_state=";
-	//char strbuff[25]={0};
 	
 	system("/home/rtl/wpa_cli -iwlan0 status > /tmp/status.txt");
-	fpr=fopen("/tmp/status.txt", "r");
+	fpr=fopen("/tmp/status.txt", "r");	//r = read!!!
 	while(fgets(wifi_status, 256, fpr) != NULL){
-		int state_buffer = strncmp(wifi_status, "wpa_state=", 10);
-	//p = strstr(strbuff, "wpa_state=");
-	//p += strlen("wpa_state=");	
-	//q=strstr(p,"\n");
-	//strncpy(wifi_status, p, q-p);
+		int state_buffer = strncmp(wifi_status, "wpa_state=", 10);	//***
+
 		if(state_buffer == 0){
-			printf("%s", wifi_status);
-			break;
-			
-		}else {
+			front = strstr(wifi_status, "wpa_state=");
+			front += strlen("wpa_state=");		//***
+			//end = strstr(front, "\n");
+			//memset(wifi_status, '\0', 256);
+			//strncpy(wifi_status, front, end-front);
+			printf("%s", front);
+			break;			
+		}else{
 			continue;
 		}
 	}

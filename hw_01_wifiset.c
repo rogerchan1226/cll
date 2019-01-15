@@ -39,7 +39,7 @@ int wpa_wpa2_aes(){
 
 	if(key_f == 1){		
 		while(1){
-			memset (PWD, '0', 256);	//clean the buffer
+			memset (PWD, '\0', 256);	//clean the buffer
 			printf("Write down 64 words as Password:\n");
 			scanf("%s", PWD);
 
@@ -57,7 +57,7 @@ int wpa_wpa2_aes(){
 		}
 	}else{
 		while(1){
-				memset (PWD, '0', 256);	//clean the buffer
+				memset (PWD, '\0', 256);	//clean the buffer
 				printf("Write down 8 ~ 63 words as Password:\n");
 				scanf("%s", PWD);
 				if(strlen(PWD) <= 7 && strlen(PWD) >= 64){
@@ -106,7 +106,7 @@ int wpa_wpa2_tkip(){
 
 	if(key_f == 1){		
 		while(1){
-			memset (PWD, '0', 256);	//clean the buffer
+			memset (PWD, '\0', 256);	//clean the buffer
 			printf("Write down 64 words as Password:\n");
 			scanf("%s", PWD);
 
@@ -124,7 +124,7 @@ int wpa_wpa2_tkip(){
 		}
 	}else{
 		while(1){
-				memset (PWD, '0', 256);	//clean the buffer
+				memset (PWD, '\0', 256);	//clean the buffer
 				printf("Write down 8 ~ 63 words as Password:\n");
 				scanf("%s", PWD);
 				if(strlen(PWD) <= 7 && strlen(PWD) >= 64){
@@ -220,7 +220,7 @@ int wpa_wep(){
 		//wep_64();
 		if(key_f == 1){
 			while(1){
-				memset (PWD, '0', 256);	//clean the buffer
+				memset (PWD, '\0', 256);	//clean the buffer
 				printf("Write down 10 words as Password:\n");
 				scanf("%s", PWD);
 
@@ -238,7 +238,7 @@ int wpa_wep(){
 			}		
 		}else{
 			while(1){
-				memset (PWD, '0', 256);	//clean the buffer
+				memset (PWD, '\0', 256);	//clean the buffer
 				printf("Write down 5 words as Password:\n");
 				scanf("%s", PWD);
 				if(strlen(PWD) != 5){
@@ -259,7 +259,7 @@ int wpa_wep(){
 		//wep_128();
 		if(key_f == 1){			
 			while(1){
-				memset (PWD, '0', 256);	//clean the buffer
+				memset (PWD, '\0', 256);	//clean the buffer
 				printf("Write down 26 words as Password:\n");
 				scanf("%s", PWD);
 
@@ -277,7 +277,7 @@ int wpa_wep(){
 			}	
 		}else{
 			while(1){
-				memset (PWD, '0', 256);	//clean the buffer
+				memset (PWD, '\0', 256);	//clean the buffer
 				printf("Write down 13 words as Password:\n");
 				scanf("%s", PWD);
 
@@ -351,7 +351,7 @@ int wpa_mix(){
 
 	if(key_f == 1){		
 		while(1){
-			memset (PWD, '0', 256);	//clean the buffer
+			memset (PWD, '\0', 256);	//clean the buffer
 			printf("Write down 64 words as Password:\n");
 			scanf("%s", PWD);
 
@@ -369,7 +369,7 @@ int wpa_mix(){
 		}
 	}else{
 		while(1){
-				memset (PWD, '0', 256);	//clean the buffer
+				memset (PWD, '\0', 256);	//clean the buffer
 				printf("Write down 8 ~ 63 words as Password:\n");
 				scanf("%s", PWD);
 				if(strlen(PWD) <= 7 && strlen(PWD) >= 64){
