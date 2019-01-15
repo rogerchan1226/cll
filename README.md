@@ -14,3 +14,7 @@ This is first C language homework from my tutor Daniel.
 So.... let's do this!!
 
 According to WPA Security types. This project ganna divides in four-parts to control/set Wifi Connection of the Demo Board.
+
+### 3. hw_02_getstate.c
+
+After done the `hw_01_wifiset`. We can possible set the wifi connect detail. So next I build `hw_02_getstate.c` to get the wifi connection status.
