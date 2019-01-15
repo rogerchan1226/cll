@@ -13,7 +13,13 @@ This is first C language homework from my tutor Daniel.
 "It is the fastest way for you to fimiler our job!" he said. 
 So.... let's do this!!
 
-According to WPA Security types. This project ganna divides in four-parts to control/set Wifi Connection of the Demo Board.
+According to WPA Security types. This program ganna divides in four-parts to control/set Wifi Connection of the Demo Board.
+```
+  1.None Mode
+  2.WEP Mode
+  3.WPA2 Mode
+  4.MIX Mode
+```
 
 ### 3. hw_02_getstate.c
 
