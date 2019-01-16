@@ -10,7 +10,7 @@ int delay(unsigned int secs) {
 	while (time(0) < retTime);               
 }
 
-int timer(){
+int timer(wps_t){
 	unsigned char *front;
 	unsigned char *pin;
 	FILE *fpr=NULL;
@@ -23,10 +23,12 @@ int timer(){
 
 	for(start_t=0; start_t < tm_sec; start_t++){
 		system("clear");
-		fpr=fopen("/tmp/pin.txt", "r");
-		fgets(wifi_pin, 256, fpr);
-		printf("%s\n", wifi_pin);
-		fclose(fpr);
+		if(wps_t==2){
+			fpr=fopen("/tmp/pin.txt", "r");
+			fgets(wifi_pin, 256, fpr);
+			printf("%s\n", wifi_pin);
+			fclose(fpr);
+		}
 		//printf("%s:%d\n",__func__,__LINE__);
 		system("/home/rtl/wpa_cli -iwlan0 status > /tmp/status.txt");
 		//printf("%s:%d\n",__func__,__LINE__);
@@ -83,8 +85,10 @@ int wps_pbc(){
 	v= timer();
 	if(v==0){
 		printf("Connnect Fail!!\n");
+	}else{
+		printf("Device Connecting!!\n");
+		system("/home/rtl/wpa_cli -iwlan0 save_config");
 	}
-	printf("Device Connecting!!\n");
 	return 0;
 }
 
@@ -97,9 +101,11 @@ int wps_pin(){
 	if(v==0){
 		printf("Connnect Fail!!\n");
 		system("rm /tmp/pin.txt");
+	}else{
+		printf("Device Connecting!!\n");
+		system("rm /tmp/pin.txt");
+		system("/home/rtl/wpa_cli -iwlan0 save_config");
 	}
-	printf("Device Connecting!!\n");
-	system("rm /tmp/pin.txt");
 	return 0;
 }
 
@@ -112,11 +118,11 @@ int main(int argc, char *argv[]){
 		printf("Select wps type:\n 1.pbc\n 2.pin\n");
 		scanf("%d", &wps_t);
 		if(wps_t ==1){
-			wps_pbc();
+			wps_pbc(wps_t);
 			break;
 
 		}else if(wps_t ==2){
-			wps_pin();
+			wps_pin(wps_t);
 			break;
 
 		}else if(wps_t <=0 || wps_t >=3){
