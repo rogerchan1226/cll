@@ -17,8 +17,8 @@ int main(){
 		int state_buffer = strncmp(wifi_status, "wpa_state=", 10);	//***
 
 		if(state_buffer == 0){
-			front = strstr(wifi_status, "wpa_state=");
-			front += strlen("wpa_state=");		//***
+			front = strstr(wifi_status, "wpa_state=");		//strstr = search string
+			front += strlen("wpa_state=");
 			//end = strstr(front, "\n");
 			//memset(wifi_status, '\0', 256);
 			//strncpy(wifi_status, front, end-front);

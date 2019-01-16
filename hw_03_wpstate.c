@@ -12,15 +12,21 @@ int delay(unsigned int secs) {
 
 int timer(){
 	unsigned char *front;
+	unsigned char *pin;
 	FILE *fpr=NULL;
 	unsigned int start_t;
 	unsigned long tm_sec = 180;
 	unsigned char wifi_status[256]={0};
+	unsigned char wifi_pin[15]={0};
 	//clock_t start = clock();
 	//printf("%s:%d\n",__func__,__LINE__);
 
 	for(start_t=0; start_t < tm_sec; start_t++){
 		system("clear");
+		fpr=fopen("/tmp/pin.txt", "r");
+		fgets(wifi_pin, 256, fpr);
+		printf("%s\n", wifi_pin);
+		fclose(fpr);
 		//printf("%s:%d\n",__func__,__LINE__);
 		system("/home/rtl/wpa_cli -iwlan0 status > /tmp/status.txt");
 		//printf("%s:%d\n",__func__,__LINE__);
@@ -85,14 +91,15 @@ int wps_pbc(){
 int wps_pin(){
 	int v;
 
-	system("/home/rtl/wpa_cli -iwlan0 wps_pin");
+	system("/home/rtl/wpa_cli -iwlan0 wps_pin any > /tmp/pin.txt");
 	//delay(3);
 	v= timer();
 	if(v==0){
 		printf("Connnect Fail!!\n");
-	}else{
-		printf("Device Connecting!!\n");
+		system("rm /tmp/pin.txt");
 	}
+	printf("Device Connecting!!\n");
+	system("rm /tmp/pin.txt");
 	return 0;
 }
 
