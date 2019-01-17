@@ -36,9 +36,22 @@ int get_state(){
 			
 	}
 
-	fpr=fopen("/settings/wifi/wpa_sta.conf", "r");				//!!!!!!!!!!!!!!! bug here !!!!!!!!!!!! first line == NULL
+	fpr=fopen("/settings/wifi/wpa_sta.conf", "r");
 	while(fgets(wifi_psk, 256, fpr) != NULL){
-		unsigned int state_psk_buffer = strncmp(wifi_psk, "        psk=", 11);
+		/*int i;
+		for(i=0; wifi_psk[i]; i++){
+			printf("%x\t", wifi_psk[i]);
+		}
+		printf("\n");*/
+
+		/*psk = strstr(wifi_psk, "        ");
+		psk += strlen("        ");
+		strcpy(psk, wifi_psk);
+		if(psk ==NULL){
+			continue;
+		}*/
+
+		unsigned int state_psk_buffer = strncmp(wifi_psk, "	psk=", 3);
 		if(state_psk_buffer == 0){
 			psk = strstr(wifi_psk, "psk=");		//strstr = search string
 			psk += strlen("psk=");
@@ -47,9 +60,10 @@ int get_state(){
 			break;
 				
 		}
+		//printf("%s:%d\n",__func__,__LINE__);
 		continue;
 	}
-
+	
 	return 0;
 }
 
