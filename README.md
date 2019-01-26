@@ -1,16 +1,22 @@
 __cll means "C Language Learning". So this `repo` only build for record C traning.__
 
-## Table of Contents
+# Table of Contents
 
-- [Test01.c](#test01)
-- [Hw_01_WifiSet](#hw_01_wifiset)
-- [Hw_02_GetState](#hw_02_getstate)
+- [test01](#test01)
+- [Homework](#homework)
+  - [hw_01_wifiset](#hw_01_wifiset)
+  - [hw_02_getstate](#hw_02_getstate)
+  - [hw_03_wpstate](#hw_03_wpstate)
+- [Function Tool & Library Practice](#function-tool-&-library-practice)
+  - [delay_tool](#delay_tool)
 
-## Test01
+## test01
 
 Only for testing
 
-## Hw_01_WifiSet
+# Homework
+
+## hw_01_wifiset
 
 __Demo board wifi function setting.__
 
@@ -25,12 +31,11 @@ According to WPA Security types. This program gonna divides in four-parts to con
   4. MIX Mode
 ```
 
-## Hw_02_GetState
+## hw_02_getstate
 
 __Show wifi status.__
 
 After done the [`hw_01_wifiset`](#hw_01_wifiset). It can possible set the wifi connect detail. So next, I build `hw_02_getstate.c` to show the wifi connection status let user know.
-
   * Step 1. Let system build the `.txt` file to record wifi status by commend line.
 ```
   system("/home/rtl/wpa_cli -iwlan0 status > /tmp/status.txt");
@@ -56,3 +61,15 @@ But `fgets` only can get string from first line. So I build a while loop to coll
 ```
 
 End here, It can get whole wifi status information string. But the output only needs wifi wpa state, which is COMPLETE, SCANNING...etc. So 
+
+## hw_03_wpstate
+
+# Function Tool & Library Practice
+
+__Record the C library practice and some useful function I was design__
+
+## delay_tool
+
+Library include `time.h`.
+
+When I was practice to design the
