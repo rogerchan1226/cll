@@ -85,10 +85,10 @@ When I was practice to design the wifi WPS security function,
 it need a countdown timer to let user to know how much secound it left and it Compelete connect or not. 
 So I figered out by making a delay function as below.
 ```
-int delay(unsigned int secs){       //Set the function name as "delay". and get the input seconds from other function
+int delay(unsigned int secs){      	        //Set the function name as "delay". and get the input seconds from other function
 	int time_count = time(0) + secs;        //time(0) equal time(NULL), it means start counting time as seconds from 1/1/1970 0:00
-	while (time(0) < time_count);       //time(0) will start counting by second until it equal time_count
-	return 0;       //Return back
+	while (time(0) < time_count);           //time(0) will start counting by second until it equal time_count
+	return 0;                               //Return back
 }
 ```
 End now every function can set the delay by this delay function. for example:
