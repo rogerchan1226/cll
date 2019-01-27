@@ -99,4 +99,5 @@ int hello_world(){
   return 0;
 }
 ```
-It will print `hello world` after eleven seconds from the beginning of program.
+It will print `hello world` after eleven seconds from the beginning of program.<br>
+In file `delay_tool.c` I create two types timer by using this delay function.
