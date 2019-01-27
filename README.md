@@ -2,20 +2,17 @@
 
 # Table of Contents
 
-- [test01](#test01)
 - [Homework](#homework)
   - [hw_01_wifiset](#hw_01_wifiset)
   - [hw_02_getstate](#hw_02_getstate)
   - [hw_03_wpstate](#hw_03_wpstate)
-- [Function Tool & Library Practice](#function-tool-&-library-practice)
+- [Function Tool &amp; Library Practice](#Function-Tool_&amp;-Library-Practice)
   - [delay_tool](#delay_tool)
-
-## test01
-
-__Only for testing__
+  
+------------------------------------
 
 # Homework
-### Practice by project
+  * ### Practice by project
 
 ## hw_01_wifiset
 
@@ -73,9 +70,11 @@ So
 
 ## hw_03_wpstate
 
-# Function Tool & Library Practice
+------------------------------------
 
-### Record the C library practice and some useful function I was design
+# Function Tool &amp; Library Practice
+
+  * ### Record the C library practice and some useful function I was design
 
 ## delay_tool
 
@@ -101,3 +100,5 @@ int main(){
 ```
 It will print `hello world` after eleven seconds from the beginning of program.<br>
 In file `delay_tool.c` I create two types timer by using this delay function.
+
+------------------------------------
