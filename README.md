@@ -1,4 +1,4 @@
-__cll means "C Language Learning". So this `repo` only build for record my C traning.__
+### cll means "C Language Learning". So this `repo` only build for record my C traning.
 
 # Table of Contents
 
@@ -12,10 +12,10 @@ __cll means "C Language Learning". So this `repo` only build for record my C tra
 
 ## test01
 
-Only for testing
+__Only for testing__
 
 # Homework
-__Practice by project__
+### Practice by project
 
 ## hw_01_wifiset
 
@@ -75,7 +75,7 @@ So
 
 # Function Tool & Library Practice
 
-__Record the C library practice and some useful function I was design__
+### Record the C library practice and some useful function I was design
 
 ## delay_tool
 
