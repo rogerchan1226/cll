@@ -93,7 +93,7 @@ int delay(unsigned int secs){      	        //Set the function name as "delay". 
 ```
 End now every function can set the delay by this delay function. for example:
 ```
-int hello_world(){
+int main(){
   delay(11);
   printf("hello word\n");
   return 0;
