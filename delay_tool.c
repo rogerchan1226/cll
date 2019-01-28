@@ -1,17 +1,17 @@
 #include <stdio.h>
-#include <time.h>
+#include <time.h>		//Key point!!
 
 
 
-int delay(unsigned int secs){
-	int time_count = time(0) + secs;   
+static inline int delay(unsigned int secs){		//Delay tool, delay by second
+	int time_count = time(0) + secs;
 	while (time(0) < time_count);
 	return 0;               
 }
 
-int count_d(){
+int count_d(){		//Count down timer
 	int start_t;
-	long end_t = 10;
+	long end_t = 10;	//Set timer second
 
 	printf("Count Down Timer Start Counting!!\n");
 
@@ -21,13 +21,13 @@ int count_d(){
 			break;
 		}		
 		printf("%ld\n", end_t - start_t);
-		delay(1);
+		delay(1);		//**
 		continue;
 	}
 	return 0;
 }
 
-int count_s(){
+int count_s(){		//Timer
 	int start_t;
 	long end_t = 10;
 
@@ -39,7 +39,7 @@ int count_s(){
 			break;
 	}
 	printf("%d\n", start_t);
-	delay(1);
+	delay(1);		//**
 	continue;
 	}
 	return 0;
