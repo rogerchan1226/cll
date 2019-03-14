@@ -8,6 +8,9 @@
   - [hw_03_wpstate](#hw_03_wpstate)
 - [Function Tool &amp; Library Practice](#function-tool--library-practice)
   - [delay_tool](#delay_tool)
+- [Linux Program](#linux-program)
+  - [socket](#socket)
+  - [makefile](#makefile)
   
 ------------------------------------
 
@@ -42,6 +45,7 @@ So next, I build `hw_02_getstate.c` to show the wifi connection status let user 
   
 ```
   system("/home/rtl/wpa_cli -iwlan0 status > /tmp/status.txt");
+                                          ===================
 ```
 
   * Step 2. Try to get the string from TXT file I build. 
