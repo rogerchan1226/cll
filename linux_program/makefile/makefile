@@ -4,7 +4,7 @@ INCLUDES=./include
 
 LIBDIRS=
 
-#SMBLIBPATH=/inferno_2016.1/src/inferno/work/OAKTmfp/Linux/55XXC0DVT/lib
+#SMBLIBPATH=
 
 #EXTRA_LDFLAGS =-L${SMBLIBPATH} -Wl,-rpath,${SMBLIBPATH} -Wl,-rpath-link,${SMBLIBPATH} 
 
