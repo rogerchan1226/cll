@@ -48,8 +48,8 @@ So next, I build `hw_02_getstate.c` to show the wifi connection status let user 
                                           ===================
 ```
 
-  * Step 2. Try to get the string from TXT file I build. 
-  I used function `fopen`, `fgets` and ` fclose`.
+  * Step 2. Try to get the string from TXT file I just builded. 
+  By using function `fopen`, `fgets` and ` fclose`.
 
 Function `fopen` should write as `fopen(" file locate ", " r(read) or w(write) ");` to open the file.
 
@@ -106,7 +106,7 @@ End now every function can set the delay by this delay function. for example:
 ```
 int main(){
   delay(11);
-  printf("hello word\n");
+  printf("hello world\n");
   return 0;
 }
 ```
