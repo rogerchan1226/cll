@@ -4,6 +4,7 @@
 #include <sys/un.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <pthread.h>
 
 
 int socket_recv(int sockfd){
@@ -29,7 +30,9 @@ int main(int argc, char *argv[]){
 	server_address.sun_family = AF_UNIX;									//
 	strcpy(server_address.sun_path, "server_socket");						// name the socket just created
 	server_len = sizeof(server_address);									//
-	bind(server_sockfd, (struct sockaddr *) &server_address, server_len);	//
+	bind(server_sockfd, (struct sockaddr *)&server_address, server_len);	//
+
+	
 
 	socket_recv(server_sockfd);
 	return 0;

@@ -1,4 +1,4 @@
-### cll means "C Language Learning". So this `repo` only build for record my C traning.
+### cll means "C Language Learning". So this `repo` was build ed for recording my C traning and linux programing.
 
 # Table of Contents
 
@@ -94,10 +94,10 @@ it need a countdown timer to let user to know how much secound it left and it Co
 So I figured out by making a delay function as below.
 
 ```
-int delay(unsigned int secs){      	        //Set the function name as "delay". and get the input seconds from other function
-	int time_count = time(0) + secs;        //time(0) equal time(NULL), it means start counting time as seconds from 1/1/1970 0:00
-	while (time(0) < time_count);           //time(0) will start counting by second until it equal time_count
-	return 0;                               //Return back
+int delay(unsigned int secs){         //Set the function name as "delay". and get the input seconds from other function
+	int time_count = time(0) + secs;    //time(0) equal time(NULL), it means start counting time as seconds from 1/1/1970 0:00
+	while (time(0) < time_count);       //time(0) will start counting by second until it equal time_count
+	return 0;                           //Return back
 }
 ```
 
@@ -115,3 +115,14 @@ It will print `hello world` after eleven seconds from the beginning of program.<
 In file `delay_tool.c` I create two types timer by using this delay function.
 
 ------------------------------------
+# Linux Program
+
+  * ### Record my linux program practice note
+
+## socket
+
+__Practice socket connect & comuncation program.__
+
+
+
+## makefile

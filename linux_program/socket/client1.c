@@ -4,6 +4,7 @@
 #include <sys/un.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <pthread.h>
 
 
 static struct sockaddr_un address;
@@ -15,11 +16,13 @@ int socket_send(int sock, int address_len){
 
 	for(i=0; i<=10; i++){
 		sprintf(num, "%d", i);
-		if(sendto(sock, num, sizeof(num), 0,(const struct sockaddr *)&address, address_len) < 0){
+		if(sendto(sock, num, sizeof(num), 0,
+				(const struct sockaddr *)&address, address_len) < 0){
 			return -1;
 			break;
 		}
-		sendto(sock, ". message get!\n", 17, 0, (const struct sockaddr *)&address, address_len);
+		sendto(sock, ". message get!\n", 17, 0, 
+				(const struct sockaddr *)&address, address_len);
 		sleep(1);
 	}
 	return 0;
@@ -28,7 +31,6 @@ int socket_send(int sock, int address_len){
 int main(int argc, char *argv[]){
 	int sockfd;
 	int len;
-	char string_send[256] = {0};
 
 	sockfd = socket(AF_UNIX, SOCK_DGRAM, 0);		                        //build the socket for client1
 
