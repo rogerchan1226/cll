@@ -36,7 +36,7 @@ void main(void){
     *input++;
     *input = "flight";
 
-    input = input;
+    input = temp;
     printf("input: %s\n", input[0]);
 
     output = longestCommonPrefix(input, 3);

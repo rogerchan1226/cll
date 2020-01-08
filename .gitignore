@@ -1,2 +1,5 @@
 .vscode/settings.json
 leetcode/test
+.vscode/launch.json
+.vscode/tasks.json
+leetcode/Longest_Common_Prefix
