@@ -13,7 +13,7 @@
 
 
 
-int reverse(int x){
+int reverse(int x){         //answer 1
     char *buf = calloc(1, 12),
          *rebuf = calloc(1, 12),
          *buftmp = buf,
@@ -51,7 +51,7 @@ int reverse(int x){
     return result;
 }
 
-int integer_reverse(int x){
+int integer_reverse(int x){         //answer 2
     int result = 0;
     int tmp ;
     if(x >= 0){
@@ -76,7 +76,11 @@ int integer_reverse(int x){
     return result;   
 }
 
-
+ /**
+  * Question's Input & Output. 
+  *     You may setup any question detail by 
+  *     modify "input" value.
+  **/
 void main(){
     int input=-1456;
     int output;

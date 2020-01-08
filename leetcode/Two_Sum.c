@@ -88,6 +88,11 @@ int* twoSum(int* nums, int numsSize, int target, int* returnSize){
     return result;
 }
 
+ /**
+  * Question's Input & Output. 
+  *     You may setup any question detail by 
+  *     modify "input" value.
+  **/
 int main(void){
     int *output = (int*)calloc(1, 3);
     int input[7] = {7,1,3,4,5,6};

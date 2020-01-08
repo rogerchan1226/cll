@@ -17,6 +17,11 @@ char * longestCommonPrefix(char ** strs, int strsSize){
     return ;
 }
 
+ /**
+  * Question's Input & Output. 
+  *     You may setup any question detail by 
+  *     modify "input" value.
+  **/
 void main(void){
     int i,
         j=2;

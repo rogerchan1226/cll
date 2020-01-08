@@ -138,6 +138,11 @@ int romanToInt(char * s){
     return result;
 } 
 
+ /**
+  * Question's Input & Output. 
+  *     You may setup any question detail by 
+  *     modify "input" value.
+  **/
 int main () {
     char *input = {"LVIII"};
     int output = 0;

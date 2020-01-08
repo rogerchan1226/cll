@@ -13,7 +13,7 @@
 
 
 
-char * defangIPaddr(char *address){
+char * defangIPaddr(char *address){         // answer 1
     char *array = calloc(1, strlen(address) +6 +1);
     int i, j;
     
@@ -28,7 +28,7 @@ char * defangIPaddr(char *address){
     return array;
 }
 
-char *deXXXXX(char* address){
+char * defangIPaddr2(char* address){         // answer 2
     char *array1 =(char *) calloc(1,16+6);
     char *tmp =array1;
         
@@ -46,16 +46,20 @@ char *deXXXXX(char* address){
     return array1;
 }
 
-
+ /**
+  * Question's Input & Output. 
+  *     You may setup any question detail by 
+  *     modify "input" value.
+  **/
 void main(){
-    char real[8]="1.1.1.1";
+    char input[8]="1.1.1.1";
     char *address;
-    char *final;
+    char *output;
 
-    address = real;
+    address = input;
     
     printf("Intput: %s\n", address);
-    final=deXXXXX(address);
+    output=defangIPaddr2(address);
 
-    printf("Output: %s\n", final);
+    printf("Output: %s\n", output);
 }
