@@ -4,33 +4,43 @@
 #include <sys/un.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <pthread.h>
 
 
+static struct sockaddr_un address;
 
+int socket_send(int sock, int address_len){
+	int i;
+	char num[5]={0};
+	printf("Start sending string !!!\n");
 
-int main(){
+	for(i=0; i<=10; i++){
+		sprintf(num, "%d", i);
+		if(sendto(sock, num, sizeof(num), 0,
+				(const struct sockaddr *)&address, address_len) < 0){
+			return -1;
+			break;
+		}
+		sendto(sock, ". message get!\n", 17, 0, 
+				(const struct sockaddr *)&address, address_len);
+		sleep(1);
+	}
+	return 0;
+}
+
+int main(int argc, char *argv[]){
 	int sockfd;
 	int len;
-	struct sockaddr_un address;
-	int result;
-	char ch = 'A';
 
-	sockfd = socket(AF_UNIX, SOCK_STREAM, 0);		//build the socket for client1
+	sockfd = socket(AF_UNIX, SOCK_DGRAM, 0);		                        //build the socket for client1
 
-	address.sun_family = AF_UNIX;				    //	{
-	strcpy(address.sun_path, "server_socket");		//		name the socket to match server
-	len = sizeof(address);							//	}
-	
-	result = connect(sockfd, (struct sockaddr *)&address, len);		//connect to server socket
+	address.sun_family = AF_UNIX;				                            //name the socket to match server
+	strcpy(address.sun_path, "server_socket");
 
-	if(result == -1){
-		perror("oops: client1");
-		exit(0);
+	len = sizeof(struct sockaddr_un);
+
+	if(socket_send(sockfd, len) < 0){
+		perror("Send Error: ");
 	}
-
-	write(sockfd, &ch, 1);		//to write by sockfd
-	read(sockfd, &ch, 1);		//to read  by sockfd
-	printf("char from server = %c\n", ch);
-	close(sockfd);
-	exit(0);
+	return 0;
 }

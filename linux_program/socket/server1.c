@@ -4,35 +4,36 @@
 #include <sys/un.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <pthread.h>
 
 
+int socket_recv(int sockfd){
+	static struct sockaddr_un client_address;
+	int string_num;
+	char recv_buff[21]={0};
+	socklen_t len = sizeof(&client_address);
+	while(1){
+		recvfrom(sockfd, recv_buff, sizeof(recv_buff), 0, 
+				(struct sockaddr *)&client_address, &len);
+		printf("%s", recv_buff);
+	}
+}
 
-
-int main(){
-	int server_sockfd, client_sockfd;
-	int server_len, client_len;
+int main(int argc, char *argv[]){
+	int server_sockfd;
+	int server_len;
 	struct sockaddr_un server_address;
-	struct sockaddr_un client_address;
 
-	unlink("server_socket");								//remove old socket
-	server_sockfd = socket(AF_UNIX, SOCK_STREAM, 0);		//create a new socket
+	unlink("server_socket");												//remove old socket
+	server_sockfd = socket(AF_UNIX, SOCK_DGRAM, 0);							//create a new socket
 
 	server_address.sun_family = AF_UNIX;									//
 	strcpy(server_address.sun_path, "server_socket");						// name the socket just created
 	server_len = sizeof(server_address);									//
-	bind(server_sockfd, (struct sockaddr *) &server_address, server_len);	//
+	bind(server_sockfd, (struct sockaddr *)&server_address, server_len);	//
 
-	listen(server_sockfd, 5);		
-	while(1){
-		char ch;
+	
 
-		printf("server waiting\n");
-		client_len = sizeof(client_address);
-		client_sockfd = accept(server_sockfd, (struct sockaddr *)&client_address, &client_len);
-
-		read(client_sockfd, &ch, 1);
-		ch++;
-		write(client_sockfd, &ch, 1);
-		close(client_sockfd);
-	}
+	socket_recv(server_sockfd);
+	return 0;
 }
