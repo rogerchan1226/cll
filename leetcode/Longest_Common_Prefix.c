@@ -1,5 +1,15 @@
 /*
- *
+ *  Question:
+ *      Write a function to find the longest common prefix string amongst an array of strings.
+ *      If there is no common prefix, return an empty string "".
+ *          Example 1:
+ *              Input: ["flower","flow","flight"]
+ *              Output: "fl"
+ *          Example 2:
+ *              Input: ["dog","racecar","car"]
+ *              Output: ""
+ *              Explanation: There is no common prefix among the input strings.
+ * 
  *  Leetcode:
  *      Runtime:  ms
  *      Memory Usage:  MB
@@ -14,12 +24,12 @@
 
 
 char * longestCommonPrefix(char ** strs, int strsSize){
-    int k = 0, l = 0;
-    char ** ptr = strs;     // set as pointer strs's initialization address
+    int k = 0, l = 0, m = 0;
+    char ** ptr = strs;                     // set as pointer strs's initialization address
     char *lock = NULL;
-    char result;
+    char *result = (char*)calloc(1, 10);
 
-    while(k < strsSize){    // pick up smallest strs address
+    while(k < strsSize){                    // pick up smallest strs address
         if(lock == NULL){
             if(strlen(strs[k]) <= strlen(strs[k+1]))
                 lock = strs[k];
@@ -29,20 +39,35 @@ char * longestCommonPrefix(char ** strs, int strsSize){
         }
         k++;
     }
-    k = strlen(lock) -1;
+    k = strlen(lock);                       // set k as smallest strs's string length
 
-    while(l <= k){
-        do{
-            if(*strs[l] != *strs[l+1])
+    do{                                     // compare and set the same field of strs[l] & strs[l+1] as result
+        if(strs[l][m] != strs[l+1][m])
+            break;
+        else{
+            result[m] = strs[l][m];
+            m++;
+        }
+            
+    }while(m < k);
+
+    k = m;                                  // set k as result string length
+    l = l+2;
+
+    while(strsSize - l){
+        for(m = 0; m < k; m++){             // compare and set the same field of result & strs[l+2] as new result
+            if(result[m] != strs[l][m])
                 break;
-            else{
-                while()
-            }
-                
-        }while(l < strsSize);
+            else
+                result[m] = strs[l][m];
+        }
+
+        l++;
     }
+
+    result[m] = '\0';                       // reset surplus fields
     
-    return ;
+    return result;
 }
 
  /**
