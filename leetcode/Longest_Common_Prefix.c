@@ -24,28 +24,31 @@
 
 
 char * longestCommonPrefix(char ** strs, int strsSize){
-    int k = 0, l = 0, m = 0;
+    int k = 1, l = 0, m = 0;
     char ** ptr = strs;                     // set as pointer strs's initialization address
-    char *lock = NULL;
-    char *result = (char*)calloc(1, 10);
+    char *lock = strs[0];
+
+    if(strsSize < 1)
+        return "";
 
     while(k < strsSize){                    // pick up smallest strs address
-        if(lock == NULL){
-            if(strlen(strs[k]) <= strlen(strs[k+1]))
-                lock = strs[k];
-        }else{
-            if(strlen(lock) >= strlen(strs[k]))
-                lock = strs[k];
-        }
+        if(strlen(lock) > strlen(ptr[k]))
+            lock = strs[k];
         k++;
     }
+    
+    if(strlen(lock) == 0)
+        return "";
+
     k = strlen(lock);                       // set k as smallest strs's string length
 
+    char *result = (char*)malloc(1*strlen(lock)+1);
+
     do{                                     // compare and set the same field of strs[l] & strs[l+1] as result
-        if(strs[l][m] != strs[l+1][m])
+        if(ptr[l][m] != ptr[l+1][m])
             break;
         else{
-            result[m] = strs[l][m];
+            result[m] = ptr[l][m];
             m++;
         }
             
@@ -56,10 +59,10 @@ char * longestCommonPrefix(char ** strs, int strsSize){
 
     while(strsSize - l){
         for(m = 0; m < k; m++){             // compare and set the same field of result & strs[l+2] as new result
-            if(result[m] != strs[l][m])
+            if(result[m] != ptr[l][m])
                 break;
             else
-                result[m] = strs[l][m];
+                result[m] = ptr[l][m];
         }
 
         l++;
@@ -92,15 +95,16 @@ void main(void){
     }
     
     input = temp;
-    *input = "flower";
+    *input = "a";
     *input++;
-    *input = "flow";
+    *input = "b";
     *input++;
-    *input = "flight";
+    *input = "c";
 
     input = temp;
     printf("input: %s, %s, %s\n", input[0], input[1], input[2]);
 
+    input = temp;
     output = longestCommonPrefix(input, 3);
     
     printf("output: %s\n", output);
