@@ -11,8 +11,8 @@
  *              Explanation: There is no common prefix among the input strings.
  * 
  *  Leetcode:
- *      Runtime:  ms
- *      Memory Usage:  MB
+ *      Runtime: 0 ms
+ *      Memory Usage: 7 MB
  * 
  */ 
 
@@ -24,53 +24,57 @@
 
 
 char * longestCommonPrefix(char ** strs, int strsSize){
-    int k = 1, l = 0, m = 0;
+    int k = 1, 
+        l = 0, 
+        m = 0,
+        n = 0;
     char ** ptr = strs;                     // set as pointer strs's initialization address
     char *lock = strs[0];
 
-    if(strsSize < 1)
+    if(strsSize < 1)                        // check if there have no input
         return "";
-
-    while(k < strsSize){                    // pick up smallest strs address
-        if(strlen(lock) > strlen(ptr[k]))
-            lock = strs[k];
-        k++;
-    }
-    
-    if(strlen(lock) == 0)
-        return "";
-
-    k = strlen(lock);                       // set k as smallest strs's string length
-
-    char *result = (char*)malloc(1*strlen(lock)+1);
-
-    do{                                     // compare and set the same field of strs[l] & strs[l+1] as result
-        if(ptr[l][m] != ptr[l+1][m])
-            break;
-        else{
-            result[m] = ptr[l][m];
-            m++;
+    else if (strsSize == 1)
+        return ptr[0];
+    else{
+        while(k < strsSize){                    // pick up smallest strs address
+            if(strlen(lock) > strlen(ptr[k]))
+                n = k;
+                lock = ptr[n];
+            k++;
         }
-            
-    }while(m < k);
+        
+        if(strlen(lock) == 0)                   // check if input is NULL char
+            return "";
 
-    k = m;                                  // set k as result string length
-    l = l+2;
+        k = 0;
+        char *result = (char*)calloc(1, strlen(lock)+1);
 
-    while(strsSize - l){
-        for(m = 0; m < k; m++){             // compare and set the same field of result & strs[l+2] as new result
-            if(result[m] != ptr[l][m])
+        do{
+            do{
+                if(l == n){
+                    l++;
+                    continue;
+                }
+
+                if(lock[m] != ptr[l][m]){
+                    k = 1;
+                    break;
+                }else{
+                    result[m] = lock[m];
+                    l++;
+                }
+            }while(l < strsSize);
+            if(k != 0)
                 break;
-            else
-                result[m] = ptr[l][m];
-        }
-
-        l++;
-    }
+            l = 0;
+            m++;
+        }while(m < strlen(lock));
 
     result[m] = '\0';                       // reset surplus fields
-    
     return result;
+    }
+    
+    return ptr[0];
 }
 
  /**
@@ -78,8 +82,13 @@ char * longestCommonPrefix(char ** strs, int strsSize){
   *     You may setup any question detail by 
   *     modify "input" value.
   **/
-void freeAllMemory(){
-    
+void freeAllMemory(char **input, char *output){
+    int o;
+
+    for(o=0; o < sizeof(input); o++)
+        free(input[o]);
+
+    free(output);
 }
 
 void main(void){
@@ -95,11 +104,11 @@ void main(void){
     }
     
     input = temp;
-    *input = "a";
+    *input = "flower";
     *input++;
-    *input = "b";
+    *input = "flow";
     *input++;
-    *input = "c";
+    *input = "flight";
 
     input = temp;
     printf("input: %s, %s, %s\n", input[0], input[1], input[2]);
@@ -108,5 +117,5 @@ void main(void){
     output = longestCommonPrefix(input, 3);
     
     printf("output: %s\n", output);
-    freeAllMemory();
+    freeAllMemory(input, output);
 }
