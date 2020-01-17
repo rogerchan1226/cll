@@ -82,14 +82,6 @@ char * longestCommonPrefix(char ** strs, int strsSize){
   *     You may setup any question detail by 
   *     modify "input" value.
   **/
-void freeAllMemory(char **input, char *output){
-    int o;
-
-    for(o=0; o < sizeof(input); o++)
-        free(input[o]);
-
-    free(output);
-}
 
 void main(void){
     int i,
@@ -117,5 +109,4 @@ void main(void){
     output = longestCommonPrefix(input, 3);
     
     printf("output: %s\n", output);
-    freeAllMemory(input, output);
 }
