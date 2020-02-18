@@ -23,10 +23,11 @@ struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2){
                     *result,
                     *result_o,
                     *result_n;
-    int cnt    = 0,                 // read list count value
-        lo1buf = 0,                 // lo1 value buffer
-        lo2buf = 0,                 // lo2 value buffer
-        sum    = 0;
+    int  cnt    = 0,                 // read list count value
+         cnt2   = 0;
+    long lo1buf = 0,                 // lo1 value buffer
+         lo2buf = 0,                 // lo2 value buffer
+         sum    = 0;
 
     result = calloc(1, sizeof(struct ListNode));
     result_o = result_n = result;
@@ -34,46 +35,47 @@ struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2){
     //========================================
     do{
         l1 = l1->next;
+        ++cnt;
         if(l1 == NULL)
             break;
-        ++cnt;
     }while(1);
 
     l1 = l1o;
 
     do{
-        lo1buf = lo1buf + (l1->val * pow(10, cnt-1));
+        lo1buf = lo1buf + (l1->val * pow(10, cnt2));
         l1 = l1->next;
-        cnt--;
-    }while(cnt);
+        cnt2++;
+    }while(cnt2 != cnt);
 
-    cnt = 0;
+    cnt  = 0;
+    cnt2 = 0;
 
     //=========================================
     do{
         l2 = l2->next;
+        ++cnt;
         if(l2 == NULL)
             break;
-        ++cnt;
     }while(1);
 
     l2 = l2o;
 
     do{
-        lo2buf = lo2buf + (l2->val * pow(10, cnt-1));
+        lo2buf = lo2buf + (l2->val * pow(10, cnt2));
         l2 = l2->next;
-        cnt--;
-    }while(cnt);
+        cnt2++;
+    }while(cnt2 != cnt);
 
     //=========================================
     sum = lo1buf + lo2buf;
 
     do{
-        result_n = calloc(1, sizeof(struct ListNode));
         result->val = sum % 10;
         sum = sum / 10;
         if(sum == 0)
             break;
+        result_n = calloc(1, sizeof(struct ListNode));
         result->next = result_n;
         result = result->next;
     }while(1);
@@ -81,6 +83,7 @@ struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2){
 
     return result_o;
 }
+
 
 void freeLinkList(struct ListNode *l, 
                   struct ListNode *ln, 
