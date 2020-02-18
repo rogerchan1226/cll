@@ -20,77 +20,76 @@ struct ListNode {
 struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2){
     struct ListNode *l1o = l1,      // l1o = l1 origin pointer
                     *l2o = l2,      // l2o = l2 origin pointer
-                    *result;
+                    *result,
+                    *result_o,
+                    *result_n;
     int cnt    = 0,                 // read list count value
-        cnt2   = 0,
         lo1buf = 0,                 // lo1 value buffer
         lo2buf = 0,                 // lo2 value buffer
         sum    = 0;
 
+    result = calloc(1, sizeof(struct ListNode));
+    result_o = result_n = result;
+
     //========================================
-    while(l1 != NULL){
-        ++cnt;
+    do{
         l1 = l1->next;
-    }
+        if(l1 == NULL)
+            break;
+        ++cnt;
+    }while(1);
 
     l1 = l1o;
 
     do{
-        lo1buf = lo1buf + (l1->val * pow(10, cnt));
+        lo1buf = lo1buf + (l1->val * pow(10, cnt-1));
         l1 = l1->next;
         cnt--;
     }while(cnt);
-    printf("lo1buf = %d\n", lo1buf);
+
+    cnt = 0;
+
     //=========================================
-    while(l2 != NULL){
-        ++cnt;
+    do{
         l2 = l2->next;
-    }
+        if(l2 == NULL)
+            break;
+        ++cnt;
+    }while(1);
 
     l2 = l2o;
 
     do{
-        lo2buf = lo2buf + (l2->val * pow(10, cnt));
+        lo2buf = lo2buf + (l2->val * pow(10, cnt-1));
         l2 = l2->next;
         cnt--;
     }while(cnt);
-    printf("lo2buf = %d\n", lo2buf);
+
     //=========================================
     sum = lo1buf + lo2buf;
 
     do{
+        result_n = calloc(1, sizeof(struct ListNode));
         result->val = sum % 10;
         sum = sum / 10;
+        if(sum == 0)
+            break;
+        result->next = result_n;
         result = result->next;
-    }while(sum != 0);
+    }while(1);
     
 
-    return result;
-    
-
-
-
-#if 0
-    while(lo1){
-        lo1buf = lo1->val;
-        lo1buf = lo1buf * pow(10, cnt);
-        cnt++;
-    }
-    cnt = 0;                        // cnt restore value
-    printf("lo1buf = %d\n", lo1buf);
-    return l1;
-#endif
+    return result_o;
 }
 
 void freeLinkList(struct ListNode *l, 
                   struct ListNode *ln, 
-                  struct ListNode *lo,
-                  int numList){
+                  struct ListNode *lo){
     
     struct ListNode *lc;     //List Clean
     int cnt;
     
-    for(cnt=0; cnt<numList; cnt++){
+    while(l->next != NULL){
         lc = l->next;
         free(l);
         l = lc;
@@ -136,7 +135,7 @@ void main(){
     
     answer = addTwoNumbers(l1, l2);
 
-    freeLinkList(l1, l1n, l1o, numList);
-    freeLinkList(l2, l2n, l2o, numList);
+    freeLinkList(l1, l1n, l1o);
+    freeLinkList(l2, l2n, l2o);
 
 }
