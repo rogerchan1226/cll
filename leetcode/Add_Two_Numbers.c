@@ -40,7 +40,7 @@ struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2){
         l1 = l1->next;
         cnt--;
     }while(cnt);
-    
+    printf("lo1buf = %d\n", lo1buf);
     //=========================================
     while(l2 != NULL){
         ++cnt;
@@ -54,12 +54,15 @@ struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2){
         l2 = l2->next;
         cnt--;
     }while(cnt);
-    
+    printf("lo2buf = %d\n", lo2buf);
     //=========================================
     sum = lo1buf + lo2buf;
 
-    
-    
+    do{
+        result->val = sum % 10;
+        sum = sum / 10;
+        result = result->next;
+    }while(sum != 0);
     
 
     return result;
@@ -79,75 +82,61 @@ struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2){
 #endif
 }
 
+void freeLinkList(struct ListNode *l, 
+                  struct ListNode *ln, 
+                  struct ListNode *lo,
+                  int numList){
+    
+    struct ListNode *lc;     //List Clean
+    int cnt;
+    
+    for(cnt=0; cnt<numList; cnt++){
+        lc = l->next;
+        free(l);
+        l = lc;
+    }
+
+    free(ln);
+    free(lo);
+
+}
+
 void main(){
     struct ListNode *l1,
                     *l2,
-                    *l1o = l1,      // l1o = l1 origin pointer
-                    *l2o = l2;      // l2o = l2 origin pointer
+                    *l1n,           // l1n = l1 next pointer
+                    *l2n,           // l2n = l2 next pointer
+                    *l1o,           // l1o = l1 origin pointer
+                    *l2o,           // l2o = l2 origin pointer
+                    *answer;
     int l1v[4]  ={2, 4, 3},         // l1v = l1 value
         l2v[4]  ={5, 6, 4},         // l2v = l2 value
         numList = 3,
         cnt     = 0;
 
-    l1 = (struct ListNode*)malloc(numList * sizeof(struct ListNode));
-    l2 = (struct ListNode*)malloc(numList * sizeof(struct ListNode));
+    l1 = calloc(1, sizeof(struct ListNode));
+    l2 = calloc(1, sizeof(struct ListNode));
+    l1n = l1o = l1;
+    l2n = l2o = l2;
 
     for(cnt=0; cnt<numList; cnt++){
-        l1 = calloc(1, sizeof(struct ListNode));
-        l1 = l1->next;
-        cnt++;
-    }
-
-    for(cnt=0; cnt<numList; cnt++){
-        l2 = calloc(1, sizeof(struct ListNode));
-        l2 = l2->next;
-        cnt++;
+        l1n = calloc(1, sizeof(struct ListNode));
+        l1->val = l1v[cnt];
+        l1->next = l1n;
+        l1 = l1->next;      //l1n
+        
+        l2n = calloc(1, sizeof(struct ListNode));
+        l2->val = l2v[cnt];
+        l2->next = l2n;
+        l2 = l2->next;      //l1n
     }
 
     l1 = l1o;
     l2 = l2o;
-    cnt = 0;
+    
+    answer = addTwoNumbers(l1, l2);
 
-    do{
-        l1->val = l1v[cnt];
-        l2->val = l2v[cnt];
-        l1 = l1->next;
-        l2 = l2->next;
-        cnt++;
-    }while(cnt < numList);
-
-    addTwoNumbers(l1, l2);
-
-#if 0
-    struct ListNode **l1,
-                    **l2,
-                     *temp = *l1;
-    int numList = 3;                // set defult number of value in list
-    char listBuf[3]={'2','4','3'};
-    int i;
-
-
-    l1 = (struct ListNode**)malloc(numList * sizeof(struct ListNode*));
-    l2 = (struct ListNode**)malloc(numList * sizeof(struct ListNode*));
-    for (i=0; i<numList; i++){
-        l1[i] = (struct ListNode*)calloc(1, sizeof(struct ListNode));
-    }
-    for (i=0; i<numList; i++){
-        l2[i] = (struct ListNode*)calloc(1, sizeof(struct ListNode));
-    }
-
-
-    i=0;
-    while(i<numList){
-        l1[i]->val = listBuf[i];
-        if((i+1) < numList)
-            l1[i]->next = l1[i+1];
-        printf("value: %d\n", l1[i]->val);
-        i++;
-    }
-
-    addTwoNumbers(l1[1],l2[1]);
-#endif
-
+    freeLinkList(l1, l1n, l1o, numList);
+    freeLinkList(l2, l2n, l2o, numList);
 
 }
