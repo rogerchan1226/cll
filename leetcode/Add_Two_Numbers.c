@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>       // gcc command should add -lm
+//#include <math.h>       // gcc command should add -lm
 
 
 
@@ -16,7 +16,50 @@ struct ListNode {
     struct ListNode *next;
 };
 
+#if 1 
+struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2){
+    struct ListNode *l1o    = l1,       /* l1o = l1 origin pointer         */
+                    *l2o    = l2,       /* l2o = l2 origin pointer         */
+                    *result = NULL,     /* result = output link list       */
+                    *resulto;           /* resulto = result origin pointer */
+    int sum   = 0,
+        carry = 0;
+    
+    /* Allocate memory for result link list */
+    result = calloc(1, sizeof(struct ListNode));
+    resulto = result;
 
+    while(1){
+        sum = l1->val + l2->val + carry;
+        result->val = sum % 10;
+        if(sum >= 10)
+            carry++;
+        else
+            carry = 0;      /* Means no carry */
+        
+        if(l1->next || l2->next || carry == 1){
+            if(l1->next)
+                l1 = l1->next;
+            else
+                l1->val = 0;
+
+            if(l2->next)
+                l2 = l2->next;
+            else
+                l2->val = 0;
+
+            result->next = calloc(1, sizeof(struct ListNode));
+            result = result->next;
+        }
+        else
+        {
+            break;
+        }
+    }
+    return resulto;
+}
+
+#elif
 struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2){
     struct ListNode *l1o = l1,      // l1o = l1 origin pointer
                     *l2o = l2,      // l2o = l2 origin pointer
@@ -83,7 +126,7 @@ struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2){
 
     return result_o;
 }
-
+#endif
 
 void freeLinkList(struct ListNode *l, 
                   struct ListNode *ln, 
