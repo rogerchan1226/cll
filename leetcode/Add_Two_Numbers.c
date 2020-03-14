@@ -1,6 +1,20 @@
+/*
+ *
+ *  Leetcode:
+ *      Runtime: 16 ms
+ *      Memory Usage: 7.5 MB
+ * 
+ */ 
+
+#define Solution_pass 1;    /* If set as 0 you can get worse solution */
+
+
 #include <stdio.h>
 #include <stdlib.h>
-//#include <math.h>       // gcc command should add -lm
+
+#ifndef Solution_pass
+    #include <math.h>       /* gcc command should add -lm */
+#endif
 
 
 
@@ -16,7 +30,7 @@ struct ListNode {
     struct ListNode *next;
 };
 
-#if 1 
+#ifdef Solution_pass 
 struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2){
     struct ListNode *l1o    = l1,       /* l1o = l1 origin pointer         */
                     *l2o    = l2,       /* l2o = l2 origin pointer         */
@@ -31,11 +45,10 @@ struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2){
 
     while(1){
         sum = l1->val + l2->val + carry;
+        carry = 0;
         result->val = sum % 10;
         if(sum >= 10)
             carry++;
-        else
-            carry = 0;      /* Means no carry */
         
         if(l1->next || l2->next || carry == 1){
             if(l1->next)
@@ -61,6 +74,10 @@ struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2){
 
 #elif
 struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2){
+/*
+ * This solution got limit by buffer size. if once input list larger than
+ * "long" buffer size, program will crash.
+ */
     struct ListNode *l1o = l1,      // l1o = l1 origin pointer
                     *l2o = l2,      // l2o = l2 origin pointer
                     *result,
@@ -156,7 +173,7 @@ void main(){
                     *answer;
     int l1v[4]  ={2, 4, 3},         // l1v = l1 value
         l2v[4]  ={5, 6, 4},         // l2v = l2 value
-        numList = 3,
+        numList = 2,
         cnt     = 0;
 
     l1 = calloc(1, sizeof(struct ListNode));
