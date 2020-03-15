@@ -12,52 +12,19 @@
 #include <string.h>
 
 
-bool isValid(char * s){
-    int cnt  = 0,
-        mark = 0;
+bool isValid(char *s) {
 
-    for(cnt = 0; cnt < strlen(s); cnt++){
-        if(s[cnt] == 0x20)      /* 0x20 == ' ' */
-            continue;
-        
-        if(mark == 0 && (s[cnt] == ')' || s[cnt] == ']' || s[cnt] == '}'))
-            return false;
-        else if((mark == 1 || mark == 2 || mark == 3) &&           /* 1 = '(', 2 = '[', 3 = '{' */
-                (s[cnt] == '(' || s[cnt] == '[' || s[cnt] == '{'))
-            return false;
-        else if(mark == 1 && (s[cnt] == ']' || s[cnt] == '}'))
-            return false;
-        else if(mark == 2 && (s[cnt] == ')' || s[cnt] == '}'))
-            return false;
-        else if(mark == 3 && (s[cnt] == ')' || s[cnt] == ']'))
-            return false;
-        else if(mark == 1 && s[cnt] == ')'){
-            mark =0;
-            continue;
+    char *q=s;
+    
+    for (char *p=s; *p; p++) 
+        switch(*p) {
+            case '(': *q++ = ')'; continue;
+            case '{': *q++ = '}'; continue;
+            case '[': *q++ = ']'; continue;
+            default: if (q==s || *p != *--q) return false;
         }
-        else if(mark == 2 && s[cnt] == ']'){
-            mark =0;
-            continue;
-        }
-        else if(mark == 3 && s[cnt] == '}'){
-            mark =0;
-            continue;
-        }
-
-        switch(s[cnt]){
-            case '(':
-                mark = 1;
-                continue;
-            case '[':
-                mark = 2;
-                continue;
-            case '{':
-                mark = 3;
-                continue;
-        }
-    }
-
-    return true;
+    
+    return q==s;
 }
 
 
@@ -73,7 +40,7 @@ void main(){
  * Note that an empty string is also considered valid.
  * 
  */
-    char input[256]={"(){}[]"};
+    char input[256]={"(()())"};
     int output;
 
     output = isValid(input);
@@ -81,6 +48,6 @@ void main(){
     if(output)
         printf("Output = TRUE\n");
     else
-        printf("Output = False\n");
+        printf("Output = FALSE\n");
 
 }
