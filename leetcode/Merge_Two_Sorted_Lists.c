@@ -8,6 +8,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define ANSWER 1
+
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -19,17 +21,72 @@ struct ListNode {
     int val;
     struct ListNode *next;
 };
+#if ANSWER
 
+struct ListNode* mergeTwoLists(struct ListNode* l1, struct ListNode* l2) {
+    if (l1 == NULL)
+        return l2;
+    if (l2 == NULL)
+        return l1;
+    if (l1->val <= l2->val) {
+        l1->next = mergeTwoLists(l1->next, l2);
+        return l1;
+    } else {
+        l2->next = mergeTwoLists(l1, l2->next);
+        return l2;
+    }
+}
+
+#else 
+void listValueCompare(struct ListNode* l1, struct ListNode* l2){
+    struct ListNode *buffer;
+
+    if(l1->val > l2->val){
+        buffer = l1;
+        l1 = l2; 
+        l2 = buffer;
+    }
+}
 
 struct ListNode* mergeTwoLists(struct ListNode* l1, struct ListNode* l2){
-    struct ListNode *buffer,
+    struct ListNode *bufferL1,
+                    *bufferL2,
                     *result;
-    
+
+    if(!l1)
+        return l2;
+    else if(!l2)
+        return l1;
+
+    listValueCompare(&l1, &l2);
     result = l1;
-    buffer = l2;
+
+    do{
+        bufferL1 = l1->next;
+        bufferL2 = l2->next;
+        if(bufferL1 && bufferL2){
+            listValueCompare(&l1, &l2);
+            l1->next = l2;
+            l2->next = bufferL1;
+            l1 = bufferL1;
+            l2 = bufferL2;
+        }else if(!bufferL1){
+            listValueCompare(&l1, &l2);
+            l1->next = l2;
+            break;
+        }else if(!bufferL2){
+            listValueCompare(&l1, &l2);
+            l1->next = l2;
+            l2->next = bufferL1;
+            break;
+        }
+    }while(bufferL1 || bufferL2);
+
 
     return result;
 }
+
+#endif
 
 void freeLinkList(struct ListNode* linklist){
     struct ListNode* buffer;
