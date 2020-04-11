@@ -10,47 +10,57 @@ char * countAndSay(int n){
     else if(n == 1)
         return "1";
     
-    char *result,           // return pointer
+    char *result,
+         *tmp,
+         *arr = (char*)calloc(1, 1),
          *count,
-         *new,
-          buffer[]={1,1},
-          resultBuf[]={0};
+         *new;
     int i,
         cnt = 0,
-        val;
-    
-    count = buffer;
-    new   = resultBuf;
+        val,
+        len = 1;
+
+    *arr = '1';
+
     for(i=2; i<=n; i++){
+        count = arr;
+        result = calloc(1, 2 * len + 1);
+        len = 0;
+        new = result;
         val = *count;
-        while(*count){
-            if(*count == val){
+        while(1){
+            if(val == *count){
                 count++;
                 cnt++;
                 continue;
             }
-            break;
+            *new++ = ('0' + cnt);
+            *new++ = val;
+            len += 2;
+            val = *count;
+            cnt = 0;
+
+            if(!*count)
+                break;
         }
-        
-        *new = cnt;
-        new++;
-        *new = val;
-        new++;
+
+        free(arr);
+        arr = result;
     }
     
-    result = (char*)calloc(1, sizeof(resultBuf));
-    result = resultBuf;
+    
+    
     return result;
 }
 
 
 void main(){
-    int n = 2;
+    int n = 10;
     char *answer;
 
     answer = countAndSay(n);
 
-    printf("%s\n", answer);
+    printf("Answer: %s\n", answer);
 
     free(answer);
 
