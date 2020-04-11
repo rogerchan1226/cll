@@ -1,3 +1,13 @@
+/*
+ *
+ *  Leetcode:
+ *      Runtime: 0 ms
+ *      Memory Usage: 5.6 MB
+ * 
+ */ 
+
+
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -10,9 +20,8 @@ char * countAndSay(int n){
     else if(n == 1)
         return "1";
     
-    char *result,
-         *tmp,
-         *arr = (char*)calloc(1, 1),
+    char *result,                           // Answer pointer
+         *arr = (char*)calloc(1, 1 + 1),    // +1 == '/0'
          *count,
          *new;
     int i,
@@ -37,6 +46,8 @@ char * countAndSay(int n){
             *new++ = ('0' + cnt);
             *new++ = val;
             len += 2;
+
+            /* paremeter reset */
             val = *count;
             cnt = 0;
 
@@ -47,9 +58,7 @@ char * countAndSay(int n){
         free(arr);
         arr = result;
     }
-    
-    
-    
+
     return result;
 }
 
