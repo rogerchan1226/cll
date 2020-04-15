@@ -1,5 +1,14 @@
+/*
+ *
+ *  Leetcode:
+ *      Runtime: 0 ms
+ *      Memory Usage: 5.6 MB
+ * 
+ */ 
+
+
+
 #include <stdio.h>
-#include <string.h>
 
 
 
@@ -11,29 +20,30 @@ int strStr(char * haystack, char * needle){
     char *hst,
          *hs  = haystack,
          *nd  = needle;
-    int cnt = 0;
+    int cnt    = 0,
+        result = 0;
     
     while(*hs){
         if(*hs != *nd){
             hs++;
+            cnt++;
             continue;
         }else{
+            result = cnt;
             hst = hs;
             cnt++;
             hs++; nd++;
             while(*nd && *hs){
                 if(*hs != *nd){
-                    nd = needle; hs = hst;
-                    cnt = 0;
+                    nd = needle; hs = hst+1;
                     break;
                 }else{
-                    cnt++;
                     hs++; nd++;
                 }
             }
             
-            if(cnt == strlen(needle))
-                return cnt;
+            if(! *nd)
+                return result;
         }
     }
     return -1;
@@ -46,12 +56,6 @@ void main(){
 
     output = strStr(input, inputNeedle);
 
-    if(output == 0){
-        printf("output = %d, Needle NULL.\n", output);
-    }else if(output == -1){
-        printf("output = %d, There has no string match.\n", output);
-    }else{
-        printf("output = %d, String match return SUCCESS.\n", output);
-    }
+    printf("output = %d.\n", output);
 
 }
